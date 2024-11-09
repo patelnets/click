@@ -666,7 +666,7 @@ def _translate_ch_to_exc(ch: str) -> None:
     return None
 
 
-if WIN:
+if sys.platform == "win32":
     import msvcrt
 
     @contextlib.contextmanager
@@ -706,9 +706,9 @@ if WIN:
         func: t.Callable[[], str]
 
         if echo:
-            func = msvcrt.getwche  # type: ignore
+            func = msvcrt.getwche
         else:
-            func = msvcrt.getwch  # type: ignore
+            func = msvcrt.getwch
 
         rv = func()
 
